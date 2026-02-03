@@ -7,19 +7,17 @@ import com.demoqa.pages.bookStore.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class LogionTest extends TestBase {
+public class LoginTests extends TestBase {
 
     @BeforeEach
     public void precondition() {
-
         new HomePage(driver).getBookStore();
         new SidePanel(driver).getLogin();
-
     }
 
     @Test
     public void loginPositiveTest() {
-        new LoginPage(driver).enterUserData("neuer", "Neuer1234!")
+        new LoginPage(driver).enterUserData("neuer","Neuer1234!")
                 .clickOnLoginButton()
                 .verifyUserName("neuer");
     }

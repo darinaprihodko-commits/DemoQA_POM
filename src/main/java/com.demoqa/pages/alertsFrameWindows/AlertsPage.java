@@ -6,22 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static java.awt.SystemColor.text;
+public class AlertsPage extends BasePage{
 
-public class AlertsPage extends BasePage {
     public AlertsPage(WebDriver driver) {
         super(driver);
-
     }
 
     @FindBy(id = "timerAlertButton")
     WebElement timerAlertButton;
 
     public AlertsPage verifyAlertWithTimer() {
-        clickWithJS(timerAlertButton, 0, 200);
+        clickWithJS(timerAlertButton,0,200);
         Assertions.assertTrue(isAlertPresent(5));
         return this;
-
     }
 
     @FindBy(id = "confirmButton")
@@ -31,38 +28,41 @@ public class AlertsPage extends BasePage {
         clickWithJS(confirmButton,0,200);
         if (result!=null && result.equals("Ok")) {
             driver.switchTo().alert().accept();
-        }
-        else if (result != null && result.equals("Cancel")) {
+        } else if (result != null && result.equals("Cancel")) {
             driver.switchTo().alert().dismiss();
         }
         return this;
     }
-    @FindBy(id="confirmResult")
+
+    @FindBy(id = "confirmResult")
     WebElement confirmResult;
-    
-    public AlertsPage verifyResult(String) {
+
+    public AlertsPage verifyResult(String text) {
         Assertions.assertTrue(isContainsText(text, confirmResult));
         return this;
-    }
-
-    public boolean isContainsText(String text) {
-        return confirmResult.getText().contains(text);
-
     }
 
     @FindBy(id = "promtButton")
     WebElement promtButton;
 
     public AlertsPage clickOnPromptButton() {
-        clickWithJS(promButton, 0, 300);
+        clickWithJS(promtButton,0,300);
         return this;
     }
+
     public AlertsPage sendMessageToAlert(String message) {
         if (message!=null) {
-            driver.switchTo().alert().sendKeys();
+            driver.switchTo().alert().sendKeys(message);
             driver.switchTo().alert().accept();
         }
         return this;
     }
-}
 
+    @FindBy(id = "promptResult")
+    WebElement promptResult;
+
+    public AlertsPage verifyMessage(String text) {
+        Assertions.assertTrue(isContainsText(text,promptResult));
+        return this;
+    }
+}
