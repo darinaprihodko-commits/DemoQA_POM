@@ -4,6 +4,7 @@ import com.demoqa.core.TestBase;
 import com.demoqa.pages.HomePage;
 import com.demoqa.pages.SidePanel;
 import com.demoqa.pages.alertsFrameWindows.AlertsPage;
+import com.demoqa.pages.alertsFrameWindows.IframesPage;
 import com.demoqa.pages.alertsFrameWindows.WindowsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,15 @@ public class AlertsFrameWindowsTests extends TestBase {
     @Test
     public void iframeByIdTest() {
         sidePanel.getFrames();
-        iframes.switchToIframeById();
+        iframes.switchToIframeById()
+                .verifyIframeByTitle("This is a sample page")
+                .switchToMainPage()
+                .verifyMainPageByTitle("Frames");
+    }
 
+    @Test
+    public void nestedIframesTest() {
+        sidePanel.getNestedFrames();
+        iframes.verifyNestedIframes();
     }
 }

@@ -26,4 +26,36 @@ public class HomePage extends BasePage {
         clickWithJS(alertsFrameWindows,0,300);
         return new SidePanel(driver);
     }
+
+    @FindBy(css = ".card:nth-child(4)")
+    WebElement widgets;
+
+    public SidePanel getWidgets() {
+        clickWithJS(widgets,0,300);
+        return new SidePanel(driver);
+    }
+
+    @FindBy(css = ".card:nth-child(5)")
+    WebElement interaction;
+
+    public SidePanel getInteractions() {
+        clickWithJS(interaction,0,300);
+        return new SidePanel(driver);
+    }
+
+    @FindBy(css = ".card:nth-child(1)")
+    WebElement elements;
+
+    public SidePanel getElements() {
+        clickWithJS(elements,0,300);
+        return new SidePanel(driver);
+    }
+
+    @FindBy(css = ".card:nth-child(2)")
+    WebElement forms;
+
+    public SidePanel getForms() {
+        clickWithJS(forms,0,300);
+        return new SidePanel(driver);
+    }
 }
